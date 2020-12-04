@@ -1,0 +1,23 @@
+{
+  "name": "js-widget",
+  "scripts": {
+    "build": "./node_modules/.bin/webpack --config webpack.config.js",
+    "start": "webpack-cli serve --mode development"
+  },
+  "dependencies": {
+    "@babel/core": "^7.0.0-beta.32",
+    "@babel/preset-env": "^7.0.0-beta.32",
+    "@webpack-cli/init": "^1.0.3",
+    "babel-loader": "^8.0.0-beta.0",
+    "copy-webpack-plugin": "^4.5.2",
+    "html-loader": "^0.5.1",
+    "json-loader": "^0.5.7",
+    "request": "^2.88.0",
+    "resolve-cwd": "^3.0.0",
+    "webpack": "^4.32.2",
+    "webpack-dev-server": "^3.11.0"
+  },
+  "devDependencies": {
+    "webpack-cli": "^4.2.0"
+  }
+}

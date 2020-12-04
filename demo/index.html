@@ -1,0 +1,76 @@
+<html>
+<head>
+    <title>Demo page of the widget</title>
+</head>
+<body>
+    hola2
+    <script type="application/json" name="widgetDefinition">
+      {
+        "widgetDefinition": {
+            "metrics": [
+                [ "AWS/EC2", "NetworkIn", "InstanceId", "i-0fe0102c1c24494e8", { "stat": "Average", "id": "m0r0", "label": "backend g4 autoscaled" } ],
+                [ "...", "i-07892959c5c0661d9", { "stat": "Average", "id": "m0r1", "label": "Backend grupo4 v2" } ]
+            ],
+            "title": "Network In Average",
+            "copilot": true,
+            "legend": {
+                "position": "bottom"
+            },
+            "view": "singleValue",
+            "stacked": true,
+            "width": 1263,
+            "height": 250,
+            "start": "-P1D",
+            "end": "P0D"
+        }
+    }
+    </script>
+
+    <script type="application/json" name="widgetDefinition">
+        {
+          "widgetDefinition": {
+                  "width": 500,
+                  "height": 400,
+                  "start": "-PT1H",
+                  "end": "PT0H",
+                  "view": "timeSeries",
+                  "stacked": false,
+                  "metrics": [
+                      [
+                         "AWS/EC2",
+                         "CPUUtilization",
+                         "InstanceId",
+                         "i-0fe0102c1c24494e8"
+                      ]
+                   ],
+                   "stat": "Average",
+                   "yAxis": {
+                          "left": {
+                              "min": 0,
+                              "max": 0.3
+                          }
+                   },
+                   "period": 60,
+                   "title": "CPUUtilization: Instance a: Acct A"        
+          }
+      }
+      </script>
+
+    <script>
+        var list = [] ;
+        var widgets = document.getElementsByName('widgetDefinition');
+        widgets.forEach((val, key, arr) => { 
+            list.push(JSON.parse(val.innerHTML)) ; 
+        });
+
+        (function (w,d,s,o,f,js,fjs) {
+            w['CW-Widget']=o;w[o] = w[o] || function () { (w[o].q = w[o].q || []).push(arguments) };
+            js = d.createElement(s), fjs = d.getElementsByTagName(s)[0];
+            js.id = o; js.src = f; js.async = 1; fjs.parentNode.insertBefore(js, fjs);
+        }(window, document, 'script', 'cw', './widget.js'));
+        cw('widget', { url: 'https://iwf7ubuqqa.execute-api.us-east-1.amazonaws.com/default/watch',
+                       widget : list
+                     });
+    </script>
+</body>
+</html>
